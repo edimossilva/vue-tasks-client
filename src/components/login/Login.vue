@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { doLoginApi } from "./../../services/api";
 export default {
   data() {
     return {
@@ -24,13 +25,14 @@ export default {
   },
   methods: {
     doLogin(username, password) {
-      const baseURI =
-        "https://edimossilva-task-manager.herokuapp.com/auth/login";
-      const params = { username, password };
-
-      this.$http.post(baseURI, params).then(result => {
-        console.log(result.data);
-      });
+      doLoginApi(username, password).then(
+        result => {
+          console.log(result.data);
+        },
+        error => {
+          console.error(error.response.data.error_message);
+        }
+      );
     }
   }
 };
