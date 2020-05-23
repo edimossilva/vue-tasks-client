@@ -11,5 +11,6 @@ export const routes = [
     name: "listTaskgroup",
     path: "/taskgroup/list",
     component: ListTaskgroup
-  }
+  },
+  { path: "*", component: Login }
 ];
