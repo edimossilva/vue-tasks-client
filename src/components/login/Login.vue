@@ -4,18 +4,27 @@
     <h1>Login</h1>
     <div>
       <label for="username">Username:</label>
-      <input type="text" />
+      <input type="text" @input="username = $event.target.value" />
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" autocomplete="new-password" />
+      <input type="password" @input="password = $event.target.value" autocomplete="new-password" />
     </div>
     <button>Login</button>
+    {{username}}
+    {{password}}
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  }
+};
 </script>
 
 <style>
