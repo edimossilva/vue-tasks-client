@@ -10,9 +10,7 @@
       <label for="password">Password:</label>
       <input type="password" v-model="password" autocomplete="new-password" />
     </div>
-    <button @click="doLogin(username,password)">Login</button>
-    {{username}}
-    {{password}}
+    <button @click="doLogin(username, password)">Login</button>
   </div>
 </template>
 
@@ -20,17 +18,20 @@
 export default {
   data() {
     return {
-      username: "",
-      password: ""
+      username: "registered_user1",
+      password: "111"
     };
   },
   methods: {
     doLogin(username, password) {
-      alert(`${username},${password}`);
+      const baseURI =
+        "https://edimossilva-task-manager.herokuapp.com/auth/login";
+      const params = { username, password };
+
+      this.$http.post(baseURI, params).then(result => {
+        console.log(result.data);
+      });
     }
   }
 };
 </script>
-
-<style>
-</style>
