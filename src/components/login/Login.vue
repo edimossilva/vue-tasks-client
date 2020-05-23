@@ -4,11 +4,11 @@
     <h1>Login</h1>
     <div>
       <label for="username">Username:</label>
-      <input type="text" @input="username = $event.target.value" />
+      <input type="text" v-model="username" />
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" @input="password = $event.target.value" autocomplete="new-password" />
+      <input type="password" v-model="password" autocomplete="new-password" />
     </div>
     <button>Login</button>
     {{username}}
