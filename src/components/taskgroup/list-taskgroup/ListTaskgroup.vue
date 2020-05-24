@@ -4,7 +4,9 @@
     <h1>List taskgroup</h1>
     <ul>
       <li v-for="taskgroup in taskgroups" :key="taskgroup.id">
-        {{ taskgroup.name }}
+        <router-link
+          :to="{ name: 'showTaskgroup', params: { id: taskgroup.id } }"
+        >{{ taskgroup.name }}</router-link>
       </li>
     </ul>
   </div>
