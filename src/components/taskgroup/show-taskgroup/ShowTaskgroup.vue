@@ -14,6 +14,7 @@
 
     <label for="frequence_type">Frequence Type: {{taskgroup.frequence_type}}</label>
     <br />
+
     <ul>
       <li v-for="taskitem in formattedTaskitems" :key="taskitem.id">{{taskitem}}</li>
     </ul>
