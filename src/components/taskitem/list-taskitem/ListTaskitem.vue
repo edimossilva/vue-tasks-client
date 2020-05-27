@@ -1,3 +1,4 @@
+// src/components/taskitem/list-taskitem/ListTaskitem.vue
 <template>
   <div>
     <h1>List Taskitem</h1>
@@ -5,7 +6,18 @@
     <label for="taskItemsOverview">{{taskItemsOverview}}</label>
 
     <ul>
-      <li v-for="taskitem in formattedTaskitems" :key="taskitem.id">{{taskitem}}</li>
+      <li v-for="taskitem in formattedTaskitems" :key="taskitem.id">
+        <div>
+          <label>checked:</label>
+          <input type="checkbox" v-model="taskitem.checked" />
+        </div>
+        <div>
+          <label>name: {{ taskitem.name}}</label>
+        </div>
+        <div>
+          <label>description: {{ taskitem.description}}</label>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
