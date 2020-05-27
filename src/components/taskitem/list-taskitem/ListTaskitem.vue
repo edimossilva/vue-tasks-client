@@ -9,7 +9,7 @@
       <li v-for="taskitem in formattedTaskitems" :key="taskitem.id">
         <div>
           <label>checked:</label>
-          <input type="checkbox" v-model="taskitem.checked" />
+          <input type="checkbox" v-model="taskitem.checked" @click="updateTaskItem(taskitem)" />
         </div>
         <div>
           <label>name: {{ taskitem.name}}</label>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { updateTaskItemApi } from "../../../services/api";
 export default {
   props: ["taskitems"],
   computed: {
@@ -40,6 +41,7 @@ export default {
   methods: {
     formatTaskitem(taskitem) {
       return {
+        id: taskitem.id,
         checked: taskitem.checked,
         name: taskitem.task.name,
         description: taskitem.task.description
@@ -47,6 +49,12 @@ export default {
     },
     isTaskitemChecked(taskitem) {
       return !!taskitem.checked;
+    },
+    updateTaskItem(taskitem) {
+      taskitem.checked = !taskitem.checked;
+      updateTaskItemApi(taskitem).then(response => {
+        console.log(response.data.data);
+      });
     }
   }
 };
