@@ -44,7 +44,7 @@ export default {
         checked: !taskitem.checked
       };
       updateTaskitemApi(mutableTaskitem).then(result =>
-        console.log(result.data.data)
+        this.$store.commit("taskitem", mutableTaskitem)
       );
     }
   },
