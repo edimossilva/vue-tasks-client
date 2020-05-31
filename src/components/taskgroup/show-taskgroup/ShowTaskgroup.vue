@@ -27,14 +27,14 @@ export default {
   components: {
     "list-taskitem": ListTaskitem
   },
-  data() {
-    return {
-      taskgroup: {}
-    };
+  computed: {
+    taskgroup() {
+      return this.$store.state.taskgroup;
+    }
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {
-      this.taskgroup = response.data.data;
+      this.$store.commit("taskgroup", response.data.data);
     });
   }
 };
