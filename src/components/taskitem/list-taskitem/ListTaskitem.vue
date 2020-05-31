@@ -25,9 +25,10 @@
 
 <script>
 import { updateTaskitemApi } from "./../../../services/api";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   methods: {
+    ...mapMutations(["setTaskitem"]),
     formatTaskitem(taskitem) {
       return {
         id: taskitem.id,
@@ -45,7 +46,7 @@ export default {
         checked: !taskitem.checked
       };
       updateTaskitemApi(mutableTaskitem).then(result =>
-        this.$store.commit("taskitem", mutableTaskitem)
+        this.setTaskitem(mutableTaskitem)
       );
     }
   },
