@@ -6,11 +6,24 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    taskgroup: {}
+    taskgroup: {},
+    taskitems: []
   },
   mutations: {
     taskgroup(state, taskgroup) {
       state.taskgroup = taskgroup;
+      state.taskitems = taskgroup.task_in_lists;
+    },
+    taskitem(state, taskitem) {
+      const stateTaskitem = state.taskitems.find(e => e.id === taskitem.id);
+
+      const mutableTaskitem = {
+        ...stateTaskitem,
+        checked: taskitem.checked
+      };
+
+      const index = state.taskitems.indexOf(stateTaskitem);
+      Object.assign(state.taskitems[index], mutableTaskitem);
     }
   }
 });

@@ -22,10 +22,10 @@
   </div>
 </template>
 
+// src/components/taskitem/list-taskitem/ListTaskitem.vue
 <script>
 import { updateTaskItemApi } from "../../../services/api";
 export default {
-  props: ["taskitems"],
   computed: {
     formattedTaskitems: function() {
       return this.taskitems.map(this.formatTaskitem);
@@ -36,6 +36,9 @@ export default {
       const checkedCount = formattedTaskitems.filter(isTaskitemChecked).length;
 
       return `${checkedCount} of ${totalCount} task items are checked`;
+    },
+    taskitems: function() {
+      return this.$store.state.taskitems;
     }
   },
   methods: {
@@ -53,7 +56,7 @@ export default {
     updateTaskItem(taskitem) {
       taskitem.checked = !taskitem.checked;
       updateTaskItemApi(taskitem).then(response => {
-        console.log(response.data.data);
+        this.$store.commit("taskitem", taskitem);
       });
     }
   }
