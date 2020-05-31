@@ -17,8 +17,9 @@
     <list-taskitem></list-taskitem>
   </div>
 </template>
-
+// src/components/taskgroup/show-taskgroup/ShowTaskgroup.vue
 <script>
+import { mapState } from "vuex";
 import { getTaskgroupApi } from "./../../../services/api";
 import ListTaskitem from "./../../taskitem/list-taskitem/ListTaskitem.vue";
 
@@ -28,9 +29,7 @@ export default {
     "list-taskitem": ListTaskitem
   },
   computed: {
-    taskgroup() {
-      return this.$store.state.taskgroup;
-    }
+    ...mapState(["taskgroup"])
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {

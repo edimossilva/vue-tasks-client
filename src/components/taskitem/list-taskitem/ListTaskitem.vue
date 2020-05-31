@@ -24,6 +24,7 @@
 
 // src/components/taskitem/list-taskitem/ListTaskitem.vue
 <script>
+import { mapState } from "vuex";
 import { updateTaskItemApi } from "../../../services/api";
 export default {
   computed: {
@@ -37,9 +38,7 @@ export default {
 
       return `${checkedCount} of ${totalCount} task items are checked`;
     },
-    taskitems: function() {
-      return this.$store.state.taskitems;
-    }
+    ...mapState(["taskitems"])
   },
   methods: {
     formatTaskitem(taskitem) {
