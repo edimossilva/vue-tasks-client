@@ -19,7 +19,7 @@
 </template>
 // src/components/taskgroup/show-taskgroup/ShowTaskgroup.vue
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import { getTaskgroupApi } from "./../../../services/api";
 import ListTaskitem from "./../../taskitem/list-taskitem/ListTaskitem.vue";
 
@@ -33,8 +33,11 @@ export default {
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {
-      this.$store.commit("taskgroup", response.data.data);
+      this.setTaskgroup(response.data.data);
     });
+  },
+  methods: {
+    ...mapMutations(["setTaskgroup"])
   }
 };
 </script>
