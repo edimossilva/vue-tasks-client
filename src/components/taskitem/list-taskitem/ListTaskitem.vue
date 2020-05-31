@@ -1,19 +1,23 @@
 <template>
   <div>
-    <label>{{taskitemsOverview}}</label>
+    <label>{{ taskitemsOverview }}</label>
     <br />
 
     <ul>
       <li v-for="taskitem in formattedTaskitems" :key="taskitem.id">
         <div>
           <label>checked:</label>
-          <input type="checkbox" v-model="taskitem.checked" @click="updateTaskitem(taskitem)" />
+          <input
+            type="checkbox"
+            v-model="taskitem.checked"
+            @click="updateTaskitem(taskitem)"
+          />
         </div>
 
-        <label>name:{{taskitem.name}}</label>
+        <label>name:{{ taskitem.name }}</label>
         <br />
 
-        <label>description:{{taskitem.description}}</label>
+        <label>description:{{ taskitem.description }}</label>
       </li>
     </ul>
   </div>
@@ -22,7 +26,6 @@
 <script>
 import { updateTaskitemApi } from "./../../../services/api";
 export default {
-  props: ["taskitems"],
   methods: {
     formatTaskitem(taskitem) {
       return {
@@ -46,6 +49,9 @@ export default {
     }
   },
   computed: {
+    taskitems() {
+      return this.$store.state.taskitems;
+    },
     formattedTaskitems: function() {
       const { taskitems, formatTaskitem } = this;
 

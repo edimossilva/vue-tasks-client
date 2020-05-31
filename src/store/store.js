@@ -6,11 +6,13 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    taskgroup: {}
+    taskgroup: {},
+    taskitems: []
   },
   mutations: {
     taskgroup(state, taskgroup) {
       state.taskgroup = taskgroup;
+      state.taskitems = taskgroup.task_in_lists;
     }
   }
 });
