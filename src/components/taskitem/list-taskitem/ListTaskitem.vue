@@ -25,6 +25,7 @@
 
 <script>
 import { updateTaskitemApi } from "./../../../services/api";
+import { mapState } from "vuex";
 export default {
   methods: {
     formatTaskitem(taskitem) {
@@ -49,9 +50,7 @@ export default {
     }
   },
   computed: {
-    taskitems() {
-      return this.$store.state.taskitems;
-    },
+    ...mapState(["taskitems"]),
     formattedTaskitems: function() {
       const { taskitems, formatTaskitem } = this;
 

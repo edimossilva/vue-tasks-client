@@ -23,16 +23,14 @@
 <script>
 import { getTaskgroupApi } from "./../../../services/api";
 import ListTaskitem from "./../../taskitem/list-taskitem/ListTaskitem";
-
+import { mapState } from "vuex";
 export default {
   props: ["id"],
   components: {
     "list-taskitem": ListTaskitem
   },
   computed: {
-    taskgroup() {
-      return this.$store.state.taskgroup;
-    }
+    ...mapState(["taskgroup"])
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {
