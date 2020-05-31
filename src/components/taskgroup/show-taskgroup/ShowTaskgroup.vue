@@ -1,18 +1,20 @@
 // src/components/taskgroup/show-taskgroup/ShowTaskgroup.vue
 <template>
   <div>
-    <h1>Show Taskgroup - id: {{id}}</h1>
+    <h1>Show Taskgroup - id: {{ id }}</h1>
 
-    <label for="id">Id: {{taskgroup.id}}</label>
+    <label for="id">Id: {{ taskgroup.id }}</label>
     <br />
 
-    <label for="name">Name: {{taskgroup.name}}</label>
+    <label for="name">Name: {{ taskgroup.name }}</label>
     <br />
 
-    <label for="description">Description: {{taskgroup.description}}</label>
+    <label for="description">Description: {{ taskgroup.description }}</label>
     <br />
 
-    <label for="frequence_type">Frequence Type: {{taskgroup.frequence_type}}</label>
+    <label for="frequence_type"
+      >Frequence Type: {{ taskgroup.frequence_type }}</label
+    >
     <br />
     <list-taskitem v-bind:taskitems="taskgroup.task_in_lists"></list-taskitem>
   </div>
@@ -27,14 +29,14 @@ export default {
   components: {
     "list-taskitem": ListTaskitem
   },
-  data() {
-    return {
-      taskgroup: {}
-    };
+  computed: {
+    taskgroup() {
+      return this.$store.state.taskgroup;
+    }
   },
   mounted: function() {
     getTaskgroupApi(this.id).then(response => {
-      this.taskgroup = response.data.data;
+      this.$store.commit("taskgroup", response.data.data);
     });
   }
 };
